@@ -19,6 +19,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to my API!"); 
 });
 
+//import routes
+import authRoutes from "./routes/auth.routes.js"
+
+app.use("/api/auth", authRoutes);
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
