@@ -1,16 +1,25 @@
-import express from "express";  
+import express from "express";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
-
 const app = express();
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
 
-app.get("/", (req,res) =>{
-    res.send
-})
 
-app.listen(PORT, () =>{
-    console.log(`Server is running on port ${PORT}`);
-})
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log(err));
+
+// Define routes
+app.get("/", (req, res) => {
+  res.send("Welcome to my API!"); 
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
