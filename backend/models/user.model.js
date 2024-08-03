@@ -31,11 +31,11 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const userValidationSchema = z.object({
-  username: z.string('Username is required').nonEmpty(),
-  email: z.string('Email is required').nonEmpty().email(),
-  password: z.string('Password is required').nonEmpty().min(8, 'Password must be at least 8 characters').max(128, 'Password must be at most 128 characters'),
-  gender: z.string('Gender is required').nonEmpty().oneOf(['Male', 'Female', 'Other']),
-  profilePicture: z.string('Profile picture is required').nonEmpty().url(),
+  username: z.string().min(1, 'Username is required'),
+  email: z.string().min(1, 'Email is required').email(),
+  password: z.string().min(8, 'Password must be at least 8 characters').max(128, 'Password must be at most 128 characters'),
+  gender: z.string().min(1, 'Gender is required').refine(val => ['Male', 'Female', 'Other'].includes(val), { message: 'Invalid gender' }),
+  profilePicture: z.string().min(1, 'Profile picture is required').url(),
 });
 
 const User = mongoose.model('User', userSchema);
