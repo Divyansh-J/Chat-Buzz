@@ -33,7 +33,7 @@ const Login = () => {
           </div>
           <Link
             to={"/signup"}
-            className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
+            className="text-sm mt-2 inline-block p-1"
           >
             {"Don't"} have an account?{" "}
             <span className="text-blue-600">Sign Up</span>
